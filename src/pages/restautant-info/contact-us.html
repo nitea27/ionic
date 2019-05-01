@@ -1,0 +1,75 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Contact Us</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div>
+		<ion-slides>
+			<ion-slide>
+				<img src="{{business?.logo}}"/>
+			</ion-slide>
+		</ion-slides>
+	</div>
+	<div padding>
+		<h1>{{business?.storeName}}</h1>
+		<div>{{business?.address}}</div>
+		<h3>About Us</h3>
+		<p>{{business?.desc}}</p>
+	</div>
+
+	<ion-list *ngIf="business">
+		<ion-list-header>Open Hours</ion-list-header>
+
+		<ion-item *ngFor="let day of days">
+			<h2>{{day.name}}</h2>
+			<!--<p><span *ngFor="let time of day.times">{{time}}</span></p>-->
+			<p>{{day.times.join(' | ')}}</p>
+		</ion-item>
+	</ion-list>
+
+	<ion-list *ngIf="business">
+		<ion-list-header>Contact Us</ion-list-header>
+
+		<button ion-item detail-none (click)="call(business.phoneNumber)">
+			<ion-icon name="call" item-end></ion-icon>
+			Call us
+		</button>
+		<button ion-item detail-none (click)="sendEmail(business.email)">
+			<ion-icon name="mail" item-end></ion-icon>
+			Send us email
+		</button>
+		<button ion-item detail-none (click)="getDirections(business.officeLocation)">
+			<ion-icon name="map" item-end></ion-icon>
+			Find us / Get directions
+		</button>
+	</ion-list>
+
+	<ion-list *ngIf="business">
+		<ion-list-header>Get Social With Us</ion-list-header>
+
+		<button ion-item detail-none (click)="openUrl(business.facebookPage)">
+			<ion-icon name="logo-facebook" item-end></ion-icon>
+			Facebook
+		</button>
+
+		<button ion-item detail-none (click)="openUrl(business.instagramPage)">
+			<ion-icon name="logo-instagram" item-end></ion-icon>
+			Instagram
+		</button>
+
+		<button ion-item detail-none (click)="openUrl(business.twitterPage)">
+			<ion-icon name="logo-twitter" item-end></ion-icon>
+			Twitter
+		</button>
+
+		<button ion-item detail-none (click)="openUrl(business.pinterestPage)">
+			<ion-icon name="logo-pinterest" item-end></ion-icon>
+			Pinterest
+		</button>
+	</ion-list>
+</ion-content>

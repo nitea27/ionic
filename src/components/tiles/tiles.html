@@ -1,0 +1,11 @@
+<ion-row *ngFor="let group of itemGroups">
+	<ion-col col-6 *ngFor="let item of group">
+		<ion-card (click)="itemClicked(item)">
+			<img [src]="item.thumb">
+			<ion-item>
+				<h5>{{item.title}}</h5>
+				<h6 *ngIf="item.price">{{item.price[0].value | money}}</h6>
+			</ion-item>
+		</ion-card>
+	</ion-col>
+</ion-row>

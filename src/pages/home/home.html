@@ -1,0 +1,83 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Home</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content class="getting-started">
+	<div class="featured-products" *ngIf="products.length">
+		<ion-slides pager>
+
+			<ion-slide *ngFor="let product of products" (click)="openProduct(product)">
+				<img [src]="product.pictures[0]"/>
+				<div class="product-title" text-wrap>{{product.title}}</div>
+			</ion-slide>
+
+		</ion-slides>
+	</div>
+
+	<ion-row class="as-tile-pair" *ngFor="let tilePair of tiles">
+		<ion-col class="as-tile" *ngFor="let tile of tilePair">
+			<ion-card (click)="navigateTo(tile)">
+				<img [src]="tile.thumb"/>
+				<ion-card-content>
+					<h5 text-nowrap text-center>
+						{{tile.title}}
+					</h5>
+				</ion-card-content>
+			</ion-card>
+
+			<!--
+			<ion-card class="tile" (click)="navigateTo(tile)">
+				<ion-card-content>
+					<ion-item>
+						<h1>
+							<ion-icon [name]="tile.icon"></ion-icon>
+						</h1>
+						<h2>{{tile.title}}</h2>
+					</ion-item>
+				</ion-card-content>
+			</ion-card>
+			-->
+		</ion-col>
+	</ion-row>
+
+	<div class="as-quick-actions">
+		<ion-card no-margin>
+			<ion-list>
+				<button ion-item (click)="contactUs()">
+					<ion-icon name="information-circle" item-start></ion-icon>
+	      	Contact us
+	    	</button>
+				<button ion-item (click)="openMap()">
+					<ion-icon name="map" item-start></ion-icon>
+	      	Map
+	    	</button>
+			</ion-list>
+		</ion-card>
+	</div>
+
+<!--
+	<ion-row>
+		<ion-card class="quick-action" (click)="contactUs()">
+			<ion-card-content>
+				<ion-icon name="information-circle"></ion-icon>
+				<span>Contact us</span>
+			</ion-card-content>
+		</ion-card>
+	</ion-row>
+
+	<ion-row>
+		<ion-card class="quick-action" (click)="openMap()">
+			<ion-card-content>
+				<ion-icon name="map"></ion-icon>
+				<span>Map</span>
+			</ion-card-content>
+		</ion-card>
+	</ion-row>
+-->
+
+</ion-content>

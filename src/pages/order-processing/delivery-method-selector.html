@@ -1,0 +1,27 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Delivery method</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<button ion-item text-wrap (click)="homeDelivery()">
+			<ion-icon name="home" item-start></ion-icon>
+			Home delivery
+			<p>Choose for receiving your order at home.</p>
+		</button>
+
+		<button ion-item text-wrap (click)="takeAway()">
+			<ion-icon name="basket" item-start></ion-icon>
+			Take away
+			<p>Choose for picking up your order from our store.</p>
+		</button>
+
+		<button ion-item text-wrap (click)="dineIn()">
+			<ion-icon name="restaurant" item-start></ion-icon>
+			Dine in
+			<p>Choose for being served in the store.</p>
+		</button>
+	</ion-list>
+</ion-content>

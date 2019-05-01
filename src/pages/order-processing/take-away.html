@@ -1,0 +1,28 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Take away</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<agm-map *ngIf="map" style="width: 100%; height: 50%;" [latitude]="map.origin.latitude" [longitude]="map.origin.longitude" [zoom]="map.zoomLevel">
+		<agm-marker [latitude]="map.origin.latitude" [longitude]="map.origin.longitude"></agm-marker>
+	</agm-map>
+	<div padding>
+		<h3 *ngIf="business">{{business.storeName}}</h3>
+		<p class="as-address" *ngIf="business">{{business.address}}</p>
+		<p>Submit your order and it will be ready to be picked up in about 30 minutes.</p>
+	</div>
+
+</ion-content>
+
+<ion-footer>
+	<ion-toolbar>
+		<ion-buttons end>
+			<button ion-button icon-right (click)="submit()">
+				Submit
+				<ion-icon name="send"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-footer>

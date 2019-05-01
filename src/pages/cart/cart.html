@@ -1,0 +1,53 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Cart</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item-sliding *ngFor="let item of cartItems" #slidingItem>
+			<ion-item text-wrap>
+				<ion-thumbnail item-left>
+					<img [src]="item.picture"/>
+				</ion-thumbnail>
+				<h2>{{item.name}}</h2>
+				<p>{{item.description | truncate : 140}}</p>
+
+				<p text-right>{{item.price | money }} x {{item.quantity}} {{item.size}}</p>
+
+				<p text-right *ngFor="let option of item.options" style="font-style: italic;">
+					{{option.name}}: {{option.value | money }}
+				</p>
+
+				<p text-right style="font-weight: 500;">
+					Total: {{cart.getItemTotal(item) | money }}
+				</p>
+			</ion-item>
+
+			<ion-item-options>
+				<button ion-button (click)="changeQuantity(item, slidingItem)">Change quantity</button>
+				<button ion-button color="danger" (click)="remove(item)">Remove</button>
+			</ion-item-options>
+		</ion-item-sliding>
+	</ion-list>
+</ion-content>
+
+<ion-footer>
+	<ion-toolbar>
+		<ion-title>
+			<span *ngIf="cartItems.length">Total: {{total | money }}</span>
+			<span *ngIf="cartItems.length === 0">Cart is empty</span>
+		</ion-title>
+
+		<ion-buttons end>
+			<button ion-button icon-right (click)="pay()" [disabled]="cartItems.length === 0">
+				Checkout
+				<ion-icon name="send"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-footer>

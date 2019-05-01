@@ -1,0 +1,23 @@
+tiles {
+	ion-card {
+		width: 100% !important;
+		margin: 0 !important;
+	}
+
+	ion-row {
+		padding: 0px 6px;
+	}
+
+	ion-row:first-child {
+		padding-top: 5px;
+	}
+
+	ion-row:last-child {
+		padding-bottom: 5px;
+	}
+
+	h5 {
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}

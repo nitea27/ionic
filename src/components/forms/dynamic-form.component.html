@@ -1,0 +1,26 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+	<ion-list>
+		<ng-template ngFor let-control [ngForOf]="controls">
+
+			<ion-item [class.invalid]="!form.controls[control.key].valid && (form.controls[control.key].touched || submitted)">
+				<ion-label floating>{{control.label}}</ion-label>
+				<ion-input *ngIf="control.controlType === 'textbox'" [formControlName]="control.key"
+					[id]="control.key" [type]="control.type">
+				</ion-input>
+				<ion-textarea *ngIf="control.controlType === 'textarea'" [formControlName]="control.key"
+					[id]="control.key" rows="4">
+				</ion-textarea>
+
+				<ion-select [formControlName]="control.key" [id]="control.key" *ngIf="control.controlType === 'select'">
+					<ion-option *ngFor="let option of control.options" [value]="option">{{option.label}}</ion-option>
+				</ion-select>
+			</ion-item>
+
+			<p *ngIf="!form.controls[control.key].valid && (form.controls[control.key].touched || submitted)" class="invalid-summary">
+				<span *ngIf="form.controls[control.key].errors.required">{{control.label}} is required</span>
+				<span *ngIf="form.controls[control.key].errors.email">{{control.label}} should be a valid email</span>
+			</p>
+
+		</ng-template>
+	</ion-list>
+</form>

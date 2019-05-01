@@ -1,0 +1,8 @@
+{
+  "name": "restaurant-2",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "id": "d6b30879"
+}

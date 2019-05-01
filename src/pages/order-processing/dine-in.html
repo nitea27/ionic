@@ -1,0 +1,25 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Dine in</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div padding>
+		<h3 *ngIf="business">{{business.storeName}}</h3>
+		<p *ngIf="business">{{business.address}}</p>
+	</div>
+
+	<dynamic-form [controls]="controls" [form]="form" [submitted]="submitted" [initialModel]="initialModel"></dynamic-form>
+</ion-content>
+
+<ion-footer>
+	<ion-toolbar>
+		<ion-buttons end>
+			<button ion-button icon-right (click)="submit()">
+				Submit
+				<ion-icon name="send"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-footer>

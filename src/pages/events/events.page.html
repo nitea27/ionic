@@ -1,0 +1,27 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Events</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item text-wrap *ngFor="let event of events" (click)="itemTapped(event)">
+			<h2 *ngIf="event.name">{{event.name}}</h2>
+			<p class="as-note">
+				<ion-icon name="clock"></ion-icon> {{event.start_time | stringToDate | date: 'short'}} - {{event.end_time | stringToDate | date: 'h:mm a'}}
+				<br>
+				<ion-icon name="compass"></ion-icon> {{event.place.name}}
+			</p>
+
+			<ion-thumbnail item-left>
+				<img class="as-thumb" *ngIf="event.cover" src="{{event.cover.source}}"/>
+			</ion-thumbnail>
+
+			<p *ngIf="event.description">{{event.description}}</p>
+		</ion-item>
+	</ion-list>
+</ion-content>

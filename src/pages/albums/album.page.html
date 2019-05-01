@@ -1,0 +1,15 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{album.title}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item text-wrap *ngFor="let picture of pictures">
+			<img *ngIf="picture.images[0]" src="{{picture.images[0].source}}"/>
+			<p *ngIf="picture.place">{{picture.place.name}}</p>
+			<h3 *ngIf="picture.name">{{picture.name}}</h3>
+		</ion-item>
+	</ion-list>
+</ion-content>

@@ -1,0 +1,93 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Product</ion-title>
+
+		<ion-buttons end>
+			<button ion-button icon-only (click)="openCart()">
+				<ion-icon name="cart"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div *ngIf="product">
+		<div>
+			<ion-slides pager>
+				<ion-slide *ngFor="let picture of product.pictures">
+					<img src="{{picture}}"/>
+				</ion-slide>
+			</ion-slides>
+		</div>
+		<div padding-horizontal>
+			<h2>{{product.title}}</h2>
+			<p class="as-tags">
+				<ion-icon name="pricetags"></ion-icon>
+				{{product.tags.join(', ')}}
+			</p>
+			<p>{{product.body}}</p>
+
+			<h5 *ngIf="product.standardOptions?.length || product.extraOptions?.length">Options and extras</h5>
+			<p>Select the options you want to be included in this item.</p>
+		</div>
+
+		<ion-list *ngIf="product.standardOptions?.length">
+			<ion-list-header>Options</ion-list-header>
+
+			<ion-item *ngFor="let option of product.standardOptions">
+				<ion-label>{{option.name}}</ion-label>
+				<ion-checkbox [(ngModel)]="option.selected"></ion-checkbox>
+			</ion-item>
+
+		</ion-list>
+
+		<ion-list *ngIf="product.extraOptions?.length">
+			<ion-list-header>Extras</ion-list-header>
+
+			<ion-item *ngFor="let option of product.extraOptions">
+				<ion-label>{{option.name}} <p>{{option.value | money}}</p></ion-label>
+				<ion-checkbox [(ngModel)]="option.selected"></ion-checkbox>
+			</ion-item>
+		</ion-list>
+
+		<div padding-horizontal>
+			<h5>Size and prices</h5>
+			<p>Select a size.</p>
+		</div>
+
+		<ion-list radio-group [(ngModel)]="price">
+			<!--<ion-list-header>Extras</ion-list-header>-->
+
+			<ion-item *ngFor="let option of product.price">
+				<ion-label>{{option.name}} <p>{{option.value | money}}</p></ion-label>
+				<ion-radio [value]="option"></ion-radio>
+			</ion-item>
+		</ion-list>
+
+		<div padding-bottom>
+			<ion-row>
+				<ion-col>
+					<button ion-button block icon-start (click)="quickAddToCart()">
+						<ion-icon name="basket"></ion-icon>
+						Quick add to cart
+					</button>
+				</ion-col>
+		</ion-row>
+
+			<ion-row no-padding>
+				<ion-col col-6>
+					<button ion-button icon-start block color="light" (click)="addToCart()">
+						<ion-icon name="cart"></ion-icon>
+						Add to cart
+					</button>
+				</ion-col>
+				<ion-col col-6>
+					<button ion-button icon-start block color="light" (click)="toggleFavorites()">
+						<ion-icon name="star"></ion-icon>
+						{{ isInFavorites ? 'Remove from favs' : 'Add to favs' }}
+					</button>
+				</ion-col>
+			</ion-row>
+		</div>
+	</div>
+</ion-content>

@@ -1,0 +1,31 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>News</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div padding>
+		<h2 *ngIf="post.story">{{post.story}}</h2>
+		<p class="as-note">
+			<ion-icon name="clock"></ion-icon> {{post.created_time | stringToDate | date : 'short'}}
+			<br>
+			<ion-icon name="pricetag"></ion-icon> {{post.type}}
+			<br>
+			<span *ngIf="post.from"><ion-icon name="person"></ion-icon> {{post.from.name}}</span>
+		</p>
+	</div>
+
+	<img *ngIf="!!post.full_picture" src="{{post.full_picture}}"
+			 style="display: block; margin: auto"/>
+
+	<div padding>
+		<p class="place" *ngIf="post.place"><span>Place: </span>{{post.place.name}}</p>
+
+		<p>{{post.message}}</p>
+		<p *ngIf="post.description && post.description!=post.message">{{post.description}}</p>
+
+		<button ion-button icon-right full *ngIf="post.link" (click)="openLink(post.link)">{{post.name}} <ion-icon name="arrow-dropright"></ion-icon></button>
+
+	</div>
+</ion-content>

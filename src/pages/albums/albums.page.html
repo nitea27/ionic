@@ -1,0 +1,17 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Albums</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+	<ion-card text-wrap *ngFor="let album of albums" (click)="itemTapped(album)">
+		<div class="as-overlay"></div>
+		<img src="{{album.cover}}"/>
+		<div class="card-title">{{album.title}}</div>
+		<div class="card-subtitle">{{album.description}}</div>
+	</ion-card>
+</ion-content>

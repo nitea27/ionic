@@ -1,0 +1,59 @@
+<ion-split-pane [enabled]="isSideMenuEnabled">
+
+	<ion-menu id="leftMenu" type="overlay" [content]="content">
+
+		<ion-header>
+			<ion-toolbar>
+				<ion-title>Pages</ion-title>
+			</ion-toolbar>
+		</ion-header>
+
+		<ion-content [menuClose]="wide">
+			<ion-list>
+				<ion-item *ngFor="let p of genericPages" (click)="openPage(p)">
+					<ion-icon [name]="p.icon" item-left></ion-icon>
+					{{p.title}}
+				</ion-item>
+
+				<ion-item-divider>
+					Categories
+				</ion-item-divider>
+				<ion-item *ngFor="let category of categories" (click)="openCategory(category)">
+					<ion-icon [name]="'folder'" item-left></ion-icon>
+					{{category.title}}
+				</ion-item>
+
+				<ion-item-divider>
+					News
+				</ion-item-divider>
+				<ion-item *ngFor="let p of newsPages" (click)="openPage(p)">
+					<ion-icon [name]="p.icon" item-left></ion-icon>
+					{{p.title}}
+				</ion-item>
+
+				<ion-item-divider>
+					Facebook
+				</ion-item-divider>
+				<ion-item *ngFor="let p of facebookPages" (click)="openPage(p)">
+					<ion-icon [name]="p.icon" item-left></ion-icon>
+					{{p.title}}
+				</ion-item>
+
+				<ion-item-divider>
+					Other
+				</ion-item-divider>
+				<ion-item *ngFor="let p of otherPages" (click)="openPage(p)">
+					<ion-icon [name]="p.icon" item-left></ion-icon>
+					{{p.title}}
+				</ion-item>
+				<ion-item (click)="logOut()">
+					<ion-icon [name]="'log-out'" item-left></ion-icon>
+					Log out
+				</ion-item>
+			</ion-list>
+		</ion-content>
+
+	</ion-menu>
+
+	<ion-nav id="nav" [root]="rootPage" main #content swipe-back-enabled="false"></ion-nav>
+</ion-split-pane>
